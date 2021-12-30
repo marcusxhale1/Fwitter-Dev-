@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Post, Vote } = require("../../models");
+const { User, Post, Vote, Comment } = require("../../models");
 
 // GET /api/users --- READS ALL USERS
 router.get("/", (req, res) => {
@@ -24,9 +24,17 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Post,
-        attributes: ['id', 'fweet', 'user_id', 'created_at']
+        attributes: ['id', 'title', 'post_url', 'created_at']
       },
-  
+      // include the Comment model here:
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'created_at'],
+        include: {
+          model: Post,
+          attributes: ['title']
+        }
+      },
       {
         model: Post,
         attributes: ['title'],
@@ -45,7 +53,7 @@ router.get('/:id', (req, res) => {
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
-    });
+    })
 });
 
 // POST /api/users --- CREATES USERS
