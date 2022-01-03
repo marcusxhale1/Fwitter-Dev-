@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS fwitter_db;
+
+CREATE DATABASE fwitter_db;

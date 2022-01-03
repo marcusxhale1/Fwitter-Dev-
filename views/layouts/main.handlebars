@@ -1,0 +1,37 @@
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fwitter</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>
+          <a href="/">Fwitter</a> 
+        </h1>
+
+        <nav>
+           {{#if loggedIn}}
+            <p class="username-nav"> Hi {{username}}, welcome back to Fwitter! Here's what you've missed so far...</p>
+            <a href="/dashboard">Dashboard</a>
+            <button id="logout" class="btn-no-style">Logout</button>
+            {{else}} 
+            <a href="/login">Login</a>
+            {{/if}}
+        </nav>
+      </header>
+      <main>
+        {{{body}}}
+      </main>
+      <footer>
+        &copy Fwitter, inc.
+      </footer>
+    </div>
+    <script src="/javascript/logout.js"></script>
+  </body>
+
+</html>
